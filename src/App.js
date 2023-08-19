@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import TravelLogo from './TravelLogo.js'
+import Form from "./Form"
+import PackingList, { Item } from './PackingList'
+import Stats from './Stats'
+import Footer from './Footer'
 
-function App() {
+const App = () => {
+  const [data, setData] = useState([])
+
+  const itemcheck = (id) => {
+    setData((items) => items.map((item) => item.id === id ? { ...item, package: !item.package } : item))
+  }
+  const onDataChange = (item) => {
+    setData((items) => [...items, item])
+  }
+  const handleDelete = (id) => {
+    setData((items) => items.filter((data) => data.id !== id))
+  }
+  const clear = () => {
+    const sd = window.confirm("Are you sure you want to delete?")
+    if (sd) setData([])
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app" >
+      <TravelLogo />
+      <Form onDataChange={onDataChange} />
+      <PackingList
+        data={data}
+        handleDelete={handleDelete}
+        itemcheck={itemcheck}
+        clear={clear}
+      />
+      <Footer data={data} />
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
