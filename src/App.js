@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import TravelLogo from './TravelLogo.js'
 import Form from "./Form"
-import PackingList, { Item } from './PackingList'
-import Stats from './Stats'
+import PackingList from './PackingList'
 import Footer from './Footer'
 
 const App = () => {

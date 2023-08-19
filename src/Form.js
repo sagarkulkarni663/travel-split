@@ -16,8 +16,7 @@ const Form = ({ onDataChange }) => {
     <form className="add-form" onSubmit={sub}>
       <h3>What do you need for your 😍 trip?</h3>
       <select value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))}>
-        {Array.from({ length: 20 }, (x, i) => i + 1).
-          map(item => (<option value={item} key={item}>{item}</option>))}
+        {Array.from({ length: 20 }, (x, i) => i + 1).map(item => (<option value={item} key={item}>{item}</option>))}
       </select>
       <input type="text" placeholder="item.."
         value={description}
